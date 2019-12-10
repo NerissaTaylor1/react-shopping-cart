@@ -8,6 +8,7 @@ import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
 import ProductContext from './contexts/ProductContext';
 import CartContext from "./contexts/CartContext";
+import ItemContext from './contexts/ItemContext';
 function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
@@ -17,10 +18,20 @@ function App() {
 		setCart([...cart, item])
 	};
 
+	const removeItem = id => {
+
+		// this.setCart({items: this.state.items.filter(item => item  !==removeItem.includes(item.id))
+		setCart(cart.filter(item => item.id !== id))
+
+
+	}
+
+
 	return (
 		<div className="App">
-			<ProductContext.Provider value={{ products, addItem }}>
-				<CartContext.Provider value={{ cart }}>
+			<ProductContext.Provider value={{ products, addItem, }}>
+				<CartContext.Provider value={{ cart, removeItem }}>
+
 
 					<Navigation />
 
